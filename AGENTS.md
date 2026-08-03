@@ -1,25 +1,56 @@
-## Development
+# Monad Space
 
-When starting the dev server, use background mode:
+Personal site for Monad Space, built with Astro and deployed to GitHub Pages.
 
-```
-astro dev --background
-```
+## Stack
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+- **Astro 7** — static site, no framework components, no content collections
+- **Tailwind CSS 4** — via `@tailwindcss/vite` plugin, theme configured in `src/styles/global.css`
+- **Vite+** — unified toolchain (`vp` CLI) for install, lint, format, and tasks
+- **pnpm** — package manager (via Vite+)
+
+## Commands
+
+| Command          | Purpose                      |
+| ---------------- | ---------------------------- |
+| `vp install`     | Install dependencies         |
+| `vp run dev`     | Start dev server             |
+| `vp run build`   | Build to `dist/`             |
+| `vp run preview` | Preview production build     |
+| `vp check`       | Format, lint, and type check |
+| `vp check --fix` | Auto-fix format/lint issues  |
+
+A pre-commit hook runs `vp check --fix` on staged files automatically.
+
+## Project Structure
+
+- `src/pages/` — routes (currently just `index.astro`, a minimal landing page)
+- `src/layouts/Layout.astro` — HTML shell; head boilerplate, fonts, `<slot />`
+- `src/styles/global.css` — Tailwind import and theme tokens (`@theme`)
+- `public/` — static assets (currently empty; no favicon by design)
+
+## Conventions
+
+- Components are `.astro` files, lowercase-kebab naming
+- TypeScript strict mode (`astro/tsconfigs/strict`)
+- Keep the site static — no server endpoints or SSR
+- Style with Tailwind utilities; design tokens go in `@theme` in `global.css`, not ad-hoc values
+- Commit messages use Conventional Commits (`feat:`, `fix:`, `chore:`, `ci:`, …); keep commits atomic
+
+## Deployment
+
+Push to `main` triggers `.github/workflows/deploy.yaml`, which builds with the official Astro action and deploys to GitHub Pages. No manual deploy step.
 
 ## Documentation
 
-Full documentation: https://docs.astro.build
+Full Astro docs: https://docs.astro.build
 
 Consult these guides before working on related tasks:
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+- [Adding pages or routes](https://docs.astro.build/en/guides/routing/)
+- [Astro component syntax](https://docs.astro.build/en/basics/astro-components/)
+- [Styling and Tailwind](https://docs.astro.build/en/guides/styling/)
+- [Integrations (sitemap, partytown, etc.)](https://docs.astro.build/en/guides/integrations-guide/)
 
 <!--VITE PLUS START-->
 
